@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://www.17sucai.com/preview/11/2017-03-18/123/demo.html -->
+<html class=" -webkit-"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Animated Laco Watch</title>
+<script src="./jquery.min.js.下载"></script>
+<style>
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Anton);
+html, body { height: 100%; }
+body { margin: 0; background: linear-gradient(to right, #cbcbcb, white); overflow: hidden; }
+/* ---------- WATCH ---------- */
+#watch { position: absolute; top: 50%; left: 50%; width: 400px; height: 400px; margin: -200px 0 0 -200px; }
+/* ---------- CASE ---------- */
+#watch .case { width: 100%; height: 100%; border-radius: 50%; background: #111 conic-gradient(#666, #111, #666, #111, #666, #111, #666, #111, #666); box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); }
+/* ---------- DIAL ---------- */
+#watch .dial { position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px; border-radius: 50%; background: #d6d8da conic-gradient(white, #d6d8da, white, #d6d8da, white, #d6d8da, white, #d6d8da, white); box-shadow: 0 0 0 5px #070707, 0 0 5px 5px rgba(255, 255, 255, 0.5); }
+#watch .dial:before { content: ''; position: absolute; top: 5.9997px; right: 5.9997px; bottom: 5.9997px; left: 5.9997px; border-radius: 50%; background: #202020; }
+/* ---------- DASHES ---------- */
+#watch .dashes i { position: absolute; top: 18.0018px; bottom: 18.0018px; left: 50%; width: 4px; margin-left: -2px; }
+#watch .dashes i:before, #watch .dashes i:after { content: ''; position: absolute; right: 0; left: 0; height: 18.0018px; background: linear-gradient(#c9e7b0, #e8f7d3); border-radius: 1px; }
+#watch .dashes i:before { top: 0; }
+#watch .dashes i:after { bottom: 0; transform: rotate(180deg); }
+#watch .dashes i:nth-child(1) { transform: rotate(0deg); }
+#watch .dashes i:nth-child(2) { transform: rotate(6deg); }
+#watch .dashes i:nth-child(3) { transform: rotate(12deg); }
+#watch .dashes i:nth-child(4) { transform: rotate(18deg); }
+#watch .dashes i:nth-child(5) { transform: rotate(24deg); }
+#watch .dashes i:nth-child(6) { transform: rotate(30deg); }
+#watch .dashes i:nth-child(7) { transform: rotate(36deg); }
+#watch .dashes i:nth-child(8) { transform: rotate(42deg); }
+#watch .dashes i:nth-child(9) { transform: rotate(48deg); }
+#watch .dashes i:nth-child(10) { transform: rotate(54deg); }
+#watch .dashes i:nth-child(11) { transform: rotate(60deg); }
+#watch .dashes i:nth-child(12) { transform: rotate(66deg); }
+#watch .dashes i:nth-child(13) { transform: rotate(72deg); }
+#watch .dashes i:nth-child(14) { transform: rotate(78deg); }
+#watch .dashes i:nth-child(15) { transform: rotate(84deg); }
+#watch .dashes i:nth-child(16) { transform: rotate(90deg); }
+#watch .dashes i:nth-child(17) { transform: rotate(96deg); }
+#watch .dashes i:nth-child(18) { transform: rotate(102deg); }
+#watch .dashes i:nth-child(19) { transform: rotate(108deg); }
+#watch .dashes i:nth-child(20) { transform: rotate(114deg); }
+#watch .dashes i:nth-child(21) { transform: rotate(120deg); }
+#watch .dashes i:nth-child(22) { transform: rotate(126deg); }
+#watch .dashes i:nth-child(23) { transform: rotate(132deg); }
+#watch .dashes i:nth-child(24) { transform: rotate(138deg); }
+#watch .dashes i:nth-child(25) { transform: rotate(144deg); }
+#watch .dashes i:nth-child(26) { transform: rotate(150deg); }
+#watch .dashes i:nth-child(27) { transform: rotate(156deg); }
+#watch .dashes i:nth-child(28) { transform: rotate(162deg); }
+#watch .dashes i:nth-child(29) { transform: rotate(168deg); }
+#watch .dashes i:nth-child(30) { transform: rotate(174deg); }
+#watch .dashes i:nth-child(31) { transform: rotate(180deg); }
+#watch .dashes.big i { width: 8px; margin-left: -4px; }
+#watch .dashes.big i:before, #watch .dashes.big i:after { height: 36.0036px; }
+#watch .dashes.big i:nth-child(1) { transform: rotate(0deg); }
+#watch .dashes.big i:nth-child(2) { transform: rotate(30deg); }
+#watch .dashes.big i:nth-child(3) { transform: rotate(60deg); }
+#watch .dashes.big i:nth-child(4) { transform: rotate(90deg); }
+#watch .dashes.big i:nth-child(5) { transform: rotate(120deg); }
+#watch .dashes.big i:nth-child(6) { transform: rotate(150deg); }
+/* ---------- NUMBERS ---------- */
+#watch .numbers { line-height: 23.9952px; font-family: 'Anton', sans-serif; font-size: 32px; color: #e8f7d3; text-align: center; }
+#watch .numbers div { position: absolute; top: 59.97001px; right: 0; bottom: 59.97001px; left: 0; }
+#watch .numbers div span { display: block; margin-top: 4px; }
+#watch .numbers div.nospace span { margin-top: 0; }
+#watch .inner-dial .numbers { line-height: 14.0007px; font-size: 20px; }
+#watch .inner-dial .numbers div { top: 0; bottom: 0; }
+#watch .numbers div:nth-child(1) { transform: rotate(30deg); }
+#watch .numbers div:nth-child(1) span { transform: rotate(-30deg); }
+#watch .numbers div:nth-child(2) { transform: rotate(60deg); }
+#watch .numbers div:nth-child(2) span { transform: rotate(-60deg); }
+#watch .numbers div:nth-child(3) { transform: rotate(90deg); }
+#watch .numbers div:nth-child(3) span { transform: rotate(-90deg); }
+#watch .numbers div:nth-child(4) { transform: rotate(120deg); }
+#watch .numbers div:nth-child(4) span { transform: rotate(-120deg); }
+#watch .numbers div:nth-child(5) { transform: rotate(150deg); }
+#watch .numbers div:nth-child(5) span { transform: rotate(-150deg); }
+#watch .numbers div:nth-child(6) { transform: rotate(180deg); }
+#watch .numbers div:nth-child(6) span { transform: rotate(-180deg); }
+#watch .numbers div:nth-child(7) { transform: rotate(210deg); }
+#watch .numbers div:nth-child(7) span { transform: rotate(-210deg); }
+#watch .numbers div:nth-child(8) { transform: rotate(240deg); }
+#watch .numbers div:nth-child(8) span { transform: rotate(-240deg); }
+#watch .numbers div:nth-child(9) { transform: rotate(270deg); }
+#watch .numbers div:nth-child(9) span { transform: rotate(-270deg); }
+#watch .numbers div:nth-child(10) { transform: rotate(300deg); }
+#watch .numbers div:nth-child(10) span { transform: rotate(-300deg); }
+#watch .numbers div:nth-child(11) { transform: rotate(330deg); }
+#watch .numbers div:nth-child(11) span { transform: rotate(-330deg); }
+/* ---------- ARROW ---------- */
+#watch .arrow { position: absolute; top: 58.05515px; left: 50%; margin-left: -14.99813px; width: 0; height: 0; border-style: solid; border-width: 0 14.99813px 26.0078px 14.99813px; border-color: transparent transparent #e8f7d3 transparent; }
+#watch .arrow:before { content: ''; position: absolute; top: 26.0078px; left: -3.00008px; width: 5.9997px; height: 16px; background: #e8f7d3; border-radius: 0 0 1px 1px; }
+/* ---------- MADE IN ---------- */
+#watch .made-in { position: absolute; right: 0; bottom: 53.33333px; left: 0; color: #eee; font-size: 5.71429px; font-family: 'Roboto', sans-serif; }
+#watch .made-in span { float: left; width: 50%; box-sizing: border-box; }
+#watch .made-in span:first-child { padding-right: 10px; text-align: right; transform: rotate(9deg); }
+#watch .made-in span:last-child { padding-left: 10px; transform: rotate(-9deg); }
+/* ---------- SHADOW ---------- */
+#watch .shadow { position: absolute; top: 5.9997px; right: 5.9997px; bottom: 5.9997px; left: 5.9997px; border-radius: 50%; box-shadow: 0 28.57143px 10px rgba(0, 0, 0, 0.5) inset; }
+/* ---------- INNER DIAL ---------- */
+#watch .inner-dial { position: absolute; top: 108.10811px; right: 108.10811px; bottom: 108.10811px; left: 108.10811px; border-radius: 50%; border: 3.00008px solid #eee; text-align: center; }
+/* ---------- LOGO ---------- */
+#watch .logo { height: 26.0078px; margin-top: 23.9952px; }
+/* ---------- HANDS ---------- */
+#watch .hands .h, #watch .hands .m, #watch .hands .s, #watch .hands .s:before { position: absolute; top: 50%; left: 50%; border-radius: 50%; background: #1c1e1c; box-shadow: 0 0 2px black, 0 0 2px rgba(255, 255, 255, 0.3) inset; }
+#watch .hands .h { width: 26.0078px; height: 26.0078px; margin: -13.0039px 0 0 -13.0039px; }
+#watch .hands .m { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
+/* ---------- HANDS DIAMONDS ---------- */
+#watch .hands .h .diamond { transform: translateY(7.00035px); }
+#watch .hands .m .diamond { transform: scaleX(0.2) translateY(8px); }
+#watch .hands .s .diamond { transform: scaleX(0.2) translateY(8px); }
+#watch .hands .diamond span { position: absolute; background: #e8f7d3; transform: rotate(-45deg) skew(-20deg, -20deg); transform-origin: bottom left; }
+#watch .hands .h .diamond span { left: 12.99968px; bottom: 10px; width: 25px; height: 25px; box-shadow: 0 0 0 4px #1c1e1c, 0 0 4px 4px rgba(0, 0, 0, 0.3); }
+#watch .hands .m .diamond span, #watch .hands .s .diamond span { left: 9.0009px; bottom: 9.0009px; width: 68.02721px; height: 68.02721px; border-radius: 1px; box-shadow: 0 0 0 12.0012px #1c1e1c, 0 0 4px 12.0012px rgba(0, 0, 0, 0.4); }
+/* ---------- SECONDS ---------- */
+#watch .hands .s { width: 14.0007px; height: 14.0007px; margin: -7.00035px 0 0 -7.00035px; background: #3b3c38; box-shadow: none; }
+#watch .hands .s:before { content: ''; width: 4px; height: 4px; margin: -4px 0 0 -4px; background: #181818; border: 2px solid #3b3c38; box-shadow: 0 0 2px rgba(0, 0, 0, 0.75); }
+#watch .hands .s div, #watch .hands .s div:before, #watch .hands .s div:after { position: absolute; left: 50%; width: 4px; margin-left: -2px; border-radius: 1px; background: #3b3c38; }
+#watch .hands .s div { bottom: 100%; height: 149.81273px; background: linear-gradient(#c9e7b0, #e8f7d3); box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.4); }
+#watch .hands .s div:before { content: ''; top: 100%; height: 55.02063px; margin-top: 14.0007px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); }
+#watch .hands .s div:after { content: ''; top: 100%; width: 12.0012px; height: 20px; margin-left: -5.9997px; margin-top: 36.0036px; border-radius: 2px; box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); }</style>
+</head>
+<body>
+
+<script src="./prefixfree.min.js.下载"></script>
+
+<div id="watch">
+    <div class="case">
+        <div class="dial">
+                
+            <div class="dashes">
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="dashes big">
+                <i></i><i></i><i></i>
+                <i></i><i></i><i></i>
+            </div>
+            
+            <div class="numbers">
+                <div class="nospace"><span>5</span></div>
+                <div><span>10</span></div>
+                <div><span>15</span></div>
+                <div><span>20</span></div>
+                <div><span>25</span></div>
+                <div class="nospace"><span>30</span></div>
+                <div><span>35</span></div>
+                <div><span>40</span></div>
+                <div><span>45</span></div>
+                <div><span>50</span></div>
+                <div><span>55</span></div>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="made-in">
+                <span>MADE IN</span>
+                <span>GERMANY</span>
+            </div>
+            
+            <div class="inner-dial">
+                <img class="logo" src="./Loader.png">
+                <div class="numbers">
+                    <div><span>1</span></div>
+                    <div><span>2</span></div>
+                    <div><span>3</span></div>
+                    <div><span>4</span></div>
+                    <div><span>5</span></div>
+                    <div><span>6</span></div>
+                    <div><span>7</span></div>
+                    <div><span>8</span></div>
+                    <div><span>9</span></div>
+                    <div><span>10</span></div>
+                    <div><span>11</span></div>
+                    <div><span>12</span></div>
+                </div>
+            </div>
+            
+            <div class="hands">
+                <div class="h" style="transform: rotate(639deg);">
+                    <div class="diamond"><span></span></div>
+                </div>
+                <div class="m" style="transform: rotate(112.3deg);">
+                    <div class="diamond"><span></span></div>
+                </div>
+                <div class="s" style="transform: rotate(260.4deg);">
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="shadow"></div>
+                
+        </div>
+    </div>
+</div>
+
+<script>
+function time() {
+    var d = new Date();
+    var h = (d.getHours() + d.getMinutes()/60) / 12 * 360;
+    var m = (d.getMinutes() + d.getSeconds()/60) / 60 * 360;
+    var s = (d.getSeconds() + d.getMilliseconds()/1000) /60 * 360;
+    $('#watch .hands .h').css('transform', 'rotate('+h+'deg)');
+    $('#watch .hands .m').css('transform', 'rotate('+m+'deg)');
+    $('#watch .hands .s').css('transform', 'rotate('+s+'deg)');
+}
+
+time();
+setInterval(time, 10);
+</script>
+
+
+
+</body></html>

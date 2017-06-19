@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>切图</title>
+<style>
+*{ margin:0; padding:0}
+#wrap{width: 400px;height: 400px;position:relative;margin: 100px;}
+#wrap .bigPic{ width:100%; height:100%;opacity: 0.4;}
+#div1 {position: absolute; width:400px; height:400px;cursor:move;overflow:hidden;top:0px; left:0px;opacity: 1;z-index: 1;}
+#div1 img{position: relative; width:100%; height:100%;top:0px; left:0px;opacity:0.3;}
+#div1 .bigImg{position:absolute;opacity: 1;}
+#div1 .div2 {width:100px; height:100px;overflow:hidden; position:absolute; top:100px; left:330px; display:none;border: 0px solid black;}
+#div1 .allHorn {width:10px;height: 10px;  position:absolute;left:-5px; top:-5px; border: 2px solid black; cursor:n-resize;z-index: 5;background-color: #CCC;cursor:nw-resize;}
+
+</style>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+	
+
+	//拖拽
+	function drag($obj){
+		$obj.mousedown(function(ev){
+			//取消mousedown的默认选中事件
+			ev.preventDefault();
+			//鼠标开始的坐标
+			var startX=ev.pageX;
+			var startY=ev.pageY;
+			// 父盒子的偏移
+			var nowTop= $obj.position().top;
+			var nowLeft= $obj.position().left;
+			$(document).mousemove(function(ev){
+				
+				//1.鼠标移动的距离
+				moveY=ev.pageY-startY;
+				moveX=ev.pageX-startX;
+				//计算父盒子的偏移
+				var divTop=nowTop+moveY;
+				var divLeft=nowLeft+moveX;
+				console.log(startY,moveY);
+				//移动范围
+				var maxL=$obj.parent().width()-$obj.width();
+				var maxH=$obj.parent().height()-$obj.height();
+
+				if (divTop<0) {
+					divTop=0;
+				}else if(divTop>maxH){
+					divTop=maxH;
+				}
+				if (divLeft<0) {
+					divLeft=0;
+				}else if(divLeft>maxL){
+					divLeft=maxL;
+				}
+
+				$obj.css({"top":divTop,"left":divLeft})
+			});
+			//鼠标离开事件
+			$(document).mouseup(function(){
+				$(document).unbind();
+			});
+		})
+	}
+	
+
+	//显示小图
+	function magnify($obj){
+		//创建元素
+		//$obj.append("<span></span>");	
+		var html=$('<div class="div2"><img class="bigImg" src="'+$("#div1 img").eq(0).prop("src")+'" /></div>')
+		$obj.append(html);
+		//调用拖拽
+		drag($(".div2"))
+
+		$obj.mouseenter(function(ev){
+
+				$(".div2").show();
+				
+				$(this).mousemove(function(ev){
+					//获取鼠标的坐标
+					// ev.pageX;
+					// ev.pageY;
+
+					//div1的坐标
+					var offset=$(this).offset();
+					//盒子尺寸
+					var _div2W=$(".div2").width();
+					var _div2H=$(".div2").height();
+					var div1W=$obj.width();
+					var div1H=$obj.height();
+
+					var div2W=$(".div2").width();
+					var div2H=$(".div2").height();
+
+					//计算缩放比例
+					var scaleL=1;
+					var scaleH=1;
+					//计算大图的尺寸
+					$(".div2 img").css({"width":400, "height":400});
+
+					
+					//计算div2的图片移动
+					console.log()
+					$(".div2 img").css({"left":-$(".div2").position().left, "top": -$(".div2").position().top});
+
+				})
+			})
+	};
+	magnify($("#div1"));
+
+
+	//改变大小
+	changeSize($(".div2"))
+
+	function changeSize($obj){
+		var $allHorn=$('<span class="allHorn"></span>')
+		$obj.append($allHorn);
+
+		$allHorn.mousedown(function(ev){
+				ev.preventDefault();
+				
+				//鼠标开始的坐标
+				var startX=ev.pageX
+				var startY=ev.pageY
+
+				// 父盒子的偏移和宽高
+				var nowTop= $obj.position().top;
+				var nowLeft= $obj.position().left;
+				var nowH=$obj.height();
+				var nowW=$obj.width();
+
+				$(document).mousemove(function(ev){
+					//1.鼠标移动的距离
+					moveY=ev.pageY-startY;
+					moveX=ev.pageX-startX;
+					//父盒子的偏移和宽高
+					var divTop=nowTop+moveY;
+					var divH=nowH-moveY;
+					var divLeft=nowLeft+moveX;
+					var divW=nowW-moveX;
+					$obj.css({"top":divTop,"left":divLeft,"height":divH,"width":divW})
+					
+
+				});//mousemove结束
+			//鼠标离开事件
+			$(document).mouseup(function(){
+
+				$(document).off("mousemove");
+			});
+
+		});//down结束
+	};
+
+
+
+});
+
+
+
+</script>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="div1">
+		
+		
+		<img src="images/1.jpg" />
+	</div>
+
+</div>
+
+
+
+</body>
+</html>

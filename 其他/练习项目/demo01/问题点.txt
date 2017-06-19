@@ -1,0 +1,4 @@
+1.外部样式表<link rel="stylesheet" href="main.css" type="text/css" />
+？3.html图片之间换行会有默认间隙（为什么？）（不换行则没有）（使用float则没有）
+4.float覆盖元素不能遮挡行内元素例如：P，img等。
+5.float会影响最后标签的排布

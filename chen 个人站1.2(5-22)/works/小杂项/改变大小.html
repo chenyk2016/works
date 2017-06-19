@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>放大镜</title>
+<style>
+*{ margin:0; padding:0}
+.wrap {position:relative;width:400px; height:400px;top:100px; left:100px;}
+.wrap img{ width:100%; height:100%;}
+.wrap .t,.l,.r,.b {width:100%;  position:absolute;  }
+
+.wrap .t{width: 100%; height: 0;top: 0;left: 0;cursor:n-resize; border-bottom:3px solid black;}
+.wrap .l{width: 0px; height: 100%;top: 0;left: 0; cursor:w-resize; border-left: 3px solid #333;}
+.wrap .r{width: 0; height: 100%;top: 0; right: 0; cursor:w-resize; border-left: 3px solid #333;}
+.wrap .b{width: 100%; height: 0;left: 0;bottom: 0; cursor:n-resize; border-bottom:3px solid black;}
+.wrap .tl,.tr, .bl,.br {width:10px;height: 10px;  position:absolute;left:-5px; top:-5px; border: 2px solid black; cursor:n-resize;z-index: 5;background-color: #CCC;cursor:nw-resize;}
+/* <span class="t"></span>
+<span class="b"></span>
+<span class="l"></span>
+<span class="r"></span>
+<span class="tl"></span>
+<span class="tr"></span>
+<span class="bl"></span>
+<span class="br"></span> */
+
+
+</style>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+	var fobj=$("#div1");
+	$("#div1 span").each(function(i,obj){
+		changeSize(obj,fobj);
+	});
+	function changeSize(obj,$fobj){
+		
+		$(obj).mousedown(function(ev){
+				ev.preventDefault();
+				
+				//鼠标开始的坐标
+				var startX=ev.pageX
+				var startY=ev.pageY
+
+				// 父盒子的偏移和宽高
+				var nowTop= $fobj.position().top;
+				var nowLeft= $fobj.position().left;
+				var nowH=$fobj.height();
+				var nowW=$fobj.width();
+				//拖动的那个？
+				var name=this.className;
+				console.log(name)
+
+
+				$(document).mousemove(function(ev){
+					//1.鼠标移动的距离
+					moveY=ev.pageY-startY;
+					moveX=ev.pageX-startX;
+					//判断拖动的那个？
+					var divTop,divH,divLeft,divW;
+					switch(name){
+						case "t": divTop=nowTop+moveY;divH=nowH-moveY;break;
+						case "l": moveY=0;break;
+						case "r": moveY=0;break;
+						case "b": moveX=0;moveY=-moveY;break;
+						case "tl": ;break;
+						case "tr": ;break;
+						case "bl": ;break;
+						case "br": ;break;
+						default:break;
+
+					}
+					//父盒子的偏移和宽高
+					var divTop=nowTop+moveY;
+					var divH=nowH-moveY;
+					var divLeft=nowLeft+moveX;
+					var divW=nowW-moveX;
+					$fobj.css({"top":divTop,"left":divLeft,"height":divH,"width":divW})
+					console.log(divTop,divH,moveY);
+
+				});//mousemove结束
+			//鼠标离开事件
+			$(document).mouseup(function(){
+
+				$(document).off("mousemove");
+			});
+		});//down结束	
+	}
+	
+});
+
+
+
+</script>
+</head>
+
+<body>
+<div class="wrap" id="div1">
+		<span class="t"></span>
+		<span class="b"></span>
+		<span class="l"></span>
+		<span class="r"></span>
+		<span class="tl"></span>
+		<span class="tr"></span>
+		<span class="bl"></span>
+		<span class="br"></span>
+		
+	
+    	<img src="images/1.jpg" />
+  
+</div>
+
+
+
+
+</body>
+</html>

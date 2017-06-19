@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>时钟</title>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<style type="text/css">
+		.clock{position: relative;width: 202px;height: 202px;background: #eee;margin:200px;}
+		.sec{width: 202px;height: 202px;border: 1px solid #333;border-radius: 50%; position: relative;z-index: 1}
+
+		.min{width: 162px;height: 162px;border: 1px solid #333;border-radius: 50%;position: absolute;top:20px;left: 20px; z-index: 2;}
+
+		.hour{width: 122px;height: 122px;border: 1px solid #333;border-radius: 50%;position: absolute;top:40px;left: 40px; z-index: 3;}
+		.pointer{width: 20px;height: 20px;border: 1px solid #333;background: #ccc; position: absolute;top: 45%;left: 45%;z-index: 5; overflow: visible;border-radius: 50%;}
+		.n1{}
+		.n2{width: 20px;height:20px;}
+		.n3{width: 20px;height: 20px;}
+
+		.pointer img{position: absolute;bottom: 9px;left: 9px;}
+	    
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		// 当前日期
+		var myDate=new Date(),
+		year=myDate.getFullYear(),
+		month=myDate.getMonth(),
+		week=myDate.getDay(),//周
+
+		day=myDate.getDate(),
+		hour=myDate.getHours(),
+		minute=myDate.getMinutes(),
+		second=myDate.getSeconds();
+
+		setInterval(function(){
+
+			if (second==60) {
+				second==0;
+				minute++
+			};
+			if (minute==60) {
+				minute=0;
+				hour++ ;
+			};
+			if(hour==12){
+				hour=0;
+			}
+			console.log(hour,minute,second);
+			$(".n1").css({"transform":"rotate("+second*6+"deg)"});
+			$(".n2").css({"transform":"rotate("+(minute*6+second/10)+"deg)"});
+			console.log((second*6))
+			$(".n3").css({"transform":"rotate("+(hour*(360/12)+minute*0.5+second*(1/120))+"deg)"});
+
+			second++;
+
+		},1000)
+
+
+	})
+		
+	</script>
+</head>
+<body>
+<div class="clock">
+	<div class="hour">
+		
+	</div>
+	<div class="min">
+		
+	</div>
+	<div class="sec">
+		
+	</div>
+	
+	<div class="pointer n2"><img src="images/min_99.jpg"></div>
+	<div class="pointer n3"><img src="images/hour_103.jpg"></div>
+	<div class="pointer n1"><img src="images/京东首页_95.jpg"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>改变大小</title>
+<style>
+*{ margin:0; padding:0}
+.wrap {position:relative;width:400px; height:400px;top:100px; left:100px;}
+.wrap img{ width:100%; height:100%;}
+.wrap .drag_span_t,.drag_span_l,.drag_span_r,.drag_span_b {width:100%;  position:absolute;  }
+
+.wrap .drag_span_t{width: 100%; height: 0;top: 0;left: 0;cursor:n-resize; border-bottom:3px solid black;}
+.wrap .drag_span_l{width: 0px; height: 100%;top: 0;left: 0; cursor:w-resize; border-left: 3px solid #333;}
+.wrap .drag_span_r{width: 0; height: 100%;top: 0; right: 0; cursor:w-resize; border-left: 3px solid #333;}
+.wrap .drag_span_b{width: 100%; height: 0;left: 0;bottom: 0; cursor:n-resize; border-bottom:3px solid black;}
+.wrap .drag_span_tl,.drag_span_tr, .drag_span_bl,.drag_span_br {width:10px;height: 10px;  position:absolute; border: 2px solid black; cursor:n-resize;z-index: 5;background-color: #CCC;}
+.wrap .drag_span_tl {left:-5px; top:-5px; cursor:nw-resize;}
+.wrap .drag_span_tr {right: -5px; top: -5px; cursor:ne-resize;}
+.wrap .drag_span_bl {bottom: -5px; left: -5px; cursor:sw-resize;}
+.wrap .drag_span_br {bottom: -5px; right: -5px; cursor:se-resize;}
+
+
+
+
+</style>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+//-----------------------------------------------------------------------------------
+	//改变尺寸和移动元素，该元素需要有定位属性；
+	//两个默认值；
+	//resize会向该元素插入八个控制移动span,并绝对定位；
+	//通过鼠标的移动距离改变该元素的位置和大小
+	jQuery.fn.changesize=function(set){
+		//默认设定
+		var def={
+			move:true,	//元素本身是否移动
+			resize:true	//是否可以改变大小span
+		}
+		var opt=jQuery.fn.extend(def,set);
+		return this.each(function(){
+			var _JQthis=$(this);
+			var faName=this.className;//获取元素类名，以判断是否点击的本身
+
+			//主要移动逻辑
+			function move(ev){
+				ev.preventDefault();
+				ev.stopPropagation();
+				//鼠标开始的坐标
+				var startX=ev.pageX
+				var startY=ev.pageY
+				console.log(startY);
+				// 父盒子的偏移和宽高
+				var oldTop= _JQthis.position().top;
+				var oldLeft= _JQthis.position().left;
+				var oldH=_JQthis.height();
+				var oldW=_JQthis.width();
+				//点击的那个元素？
+				var name=this.className;
+				
+				//定义新的值
+				var nowTop=oldTop;
+				var nowH=oldH;
+				var nowLeft=oldLeft;
+				var nowW=oldW;
+				
+				$(document).mousemove(function(ev){
+					//1.鼠标移动的距离
+					moveY=ev.pageY-startY;
+					moveX=ev.pageX-startX;
+					console.log(moveY);
+					//判断拖动的那个？
+					switch(name){
+						case "drag_span drag_span_t": nowTop=oldTop+moveY; nowH=oldH-moveY ; break;
+						case "drag_span drag_span_l": nowLeft=oldLeft+moveX;nowW=oldW-moveX ; break;
+						case "drag_span drag_span_r": nowW=oldW+moveX ; break;
+						case "drag_span drag_span_b": nowH=oldH+moveY ; break;
+						case "drag_span drag_span_tl": nowTop=oldTop+moveY; nowH=oldH-moveY ; nowLeft=oldLeft+moveX;nowW=oldW-moveX ; break;
+						case "drag_span drag_span_tr": nowTop=oldTop+moveY; nowH=oldH-moveY ; nowW=oldW+moveX ; break;
+						case "drag_span drag_span_bl": nowH=oldH+moveY ; nowLeft=oldLeft+moveX;nowW=oldW-moveX  ; break;
+						case "drag_span drag_span_br": nowH=oldH+moveY ; nowW=oldW+moveX ; break;
+						case faName : nowLeft=oldLeft+moveX; nowTop=oldTop+moveY;break;
+						default:break;
+
+					}
+					//父盒子的偏移和宽高
+					_JQthis.css({"top":nowTop,"left":nowLeft,"height":nowH,"width":nowW})
+					console.log(nowTop,nowLeft,nowH,nowW);
+
+				});//mousemove结束
+				//鼠标离开事件
+				$(document).mouseup(function(){
+					$(document).off("mousemove");
+				});
+			}//down结束
+
+			if(opt.move){
+				_JQthis.mousedown(function(ev){move.call(this,ev)});
+			}
+			if (opt.resize) {
+				//创建span边，
+				//drag_span_t,drag_span_l,drag_span_r,drag_span_b,drag_span_tl,drag_span_tr, drag_span_bl,drag_span_br 
+				//为创建的标签类名(更改类名需要同时更改函数里的switch)
+				var oSpan=_JQthis.append('<span class="drag_span drag_span_t"></span><span class="drag_span drag_span_b"></span><span class="drag_span drag_span_l"></span><span class="drag_span drag_span_r"></span><span class="drag_span drag_span_tl"></span><span class="drag_span drag_span_tr"></span><span class="drag_span drag_span_bl"></span><span class="drag_span drag_span_br"></span>');
+				_JQthis.children(".drag_span").mousedown(function(ev){
+					move.call(this,ev);
+				});
+			}
+		});
+	};	//changesize结束
+//-----------------------------------------------------------------------------------
+
+	$("#div1").changesize({"move":true,"resize":true});
+	
+});
+
+
+
+</script>
+</head>
+
+<body>
+<div class="wrap" id="div1">
+    <img src="images/1.jpg" />
+</div>
+
+
+
+
+</body>
+</html>

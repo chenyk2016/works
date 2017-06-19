@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滚动条</title>
+	<style type="text/css">
+		.wrap{margin: 100px;position: relative;}
+		.box{width: 200px;height: 400px;border: 1px solid #ccc;padding-right: 30px;position: relative;}
+		.box p{position: relative;margin: 0px;}
+		.bar{width: 20px;height: 100%; background-color: #ccc;position: absolute;top: 0;right: 0;}
+		.tiao{width: 100%;height: 50px;background-color: #333;position: absolute;}
+	</style>
+	<script type="text/javascript" src="../../jquery/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+<div class="wrap">
+	<div class="box">
+		<p>啥都和决赛返回萨科技等放寒假的萨芬和空间的萨菲黄金大神发空间撒地方海事局的划分空间多撒谎发几款是窗口进行中双方的空间的撒谎发空间的撒谎发多少分空间的撒谎附件三口大师和快捷方式的恢复教案设计三的空间撒很多事啥都和决赛返回萨科技等放寒假的萨芬和空间的萨菲黄金大神发空间撒地方海事局的划分空间多撒谎发几款是窗口进行中双方的空间的撒谎发空间的撒谎发多少分空间的撒谎附件三口大师和快捷方式的恢复教案设计三的空间撒很多事啥都和决赛返回萨科技等放寒假的萨芬和空间的萨菲黄金大神发空间撒地方海事局的划分空间多撒谎发几款是窗口进行中双方的空间的撒谎发空间的撒谎发多少分空间的撒谎附件三口大师和快捷方式的恢复教案设计三的空间撒很多事啥都和决赛返回萨科技等放寒假的萨芬和空间的萨菲黄金大神发空间撒地方海事局的划分空间多撒谎发几款是窗口进行中双方的空间的撒谎发空间的撒谎发多少分空间的撒谎附件三口大师和快捷方式的恢复教案设计三的空间撒很多事</p>
+		<div class="bar">
+			<div class="tiao">
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var boxH=$(".box").height();	//盒子高度
+	var txtH=$(".box p").prop("scrollHeight");	//文本高度
+	
+	//超出文本高度
+	var overH=txtH-boxH+20;
+	if(overH>0){
+		
+		// 设置滚动条的高度
+		var rateTiao=boxH/txtH;
+		var tiaoH=rateTiao*boxH;
+		//滚动条的高
+		$(".tiao").css("height",tiaoH<50? 50 : tiaoH)
+		var rate= overH / ( boxH-tiaoH );	//滚动条和文本移动比率 文本=滚*rate
+		var tiaoStartY=$(".tiao").position().top	//滚动条初始位置
+
+
+		$(".bar").mousedown(function(ev){
+			
+			ev.preventDefault();
+			// 获取初始值
+			var shartY=ev.pageY;
+			tiaoStartY=$(".tiao").position().top
+
+			$(".tiao").mousemove(function(ev){
+				// 鼠标移动距离
+				var disY=ev.pageY-shartY;
+				// 滚动条移动高度
+				var tiaoY=disY+tiaoStartY;
+				
+				
+				if (tiaoY<0) {
+					tiaoY=0;
+				};
+				if (tiaoY>boxH-tiaoH ) {
+					tiaoY=boxH-tiaoH;
+				};
+				h=tiaoY;
+				$(".tiao").css("top",tiaoY);
+				
+				//调节文本高度
+				$(".box p").css("top",-tiaoY*rate)
+
+			});
+
+			$(document).mouseup(function(){
+				$(".tiao").off("mousemove");
+			});
+		});
+
+		//鼠标滚轮
+		var h=0;
+
+		$(".box")[0].onmousewheel=function(ev){
+			ev.stopPropagation();
+			
+			if (ev.wheelDelta? ev.wheelDelta>0 :ev.detail<0 ) {
+				h-=10;
+			}else{
+				h+=10;
+			}
+
+			if (h<0) {
+				h=0;
+			};
+			if (h>boxH-tiaoH ) {
+				h=boxH-tiaoH;
+			};
+			$(".tiao").css("top",h);
+			$(".box p").css("top",-h*rate)
+		}
+		
+	}//if结束
+
+
+
+</script>
+
+</body>
+</html>
