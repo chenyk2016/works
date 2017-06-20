@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+.container { max-width: 1000px; padding: 0; }
+
+.topper{ background-color: #1f272d; font-size: 14px; color: #666; line-height: 20px ;line-height: 40px; }
+.topper h1{ font-size: 20px; color: #ccc; margin: 0;padding: 0; line-height: 40px; }
+.topper h1 span{ font-size: 14px; }
+.topper .column{ height: 40px; }
+
+.topper .column span{ padding-right: 20px; }
+.topper .icon-link{ width: 20px;height: 20px;display: inline-block; background: url(images/awesome_modify_09.jpg) no-repeat;margin:10px 5px 0 0;   }
+.topper .icon-link:nth-child(2){ background-image: url(images/awesome_modify_11.jpg);   }
+.topper .icon-link:nth-child(3){ background-image: url(images/awesome_modify_13.jpg);   }
+.topper .icon-link:nth-child(4){ background-image: url(images/awesome_modify_15.jpg);   }
+.topper .icon-link:nth-child(5){ background-image: url(images/awesome_modify_17.jpg);   }
+  
+
+.purchase { color: #444; position: relative; }
+.purchase h1{ font-size: 50px; }
+.purchase p{ font-size: 20px; color: #666; }
+.purchase .module{ width: 100%; height: 100%; opacity: 1; position: absolute;top:0; left: 0; background-color: #eee;   }
+.purchase .jumbotron{ background: transparent; position: relative;}
+
+
+.footer { background-color: #283036; color: #ccc; font-size: 12px; text-align: center; padding: 20px 0px 10px 0; }
+
+/*project*/
+.project{padding: 64px 0;text-align: center;background-color:rgba(0,0,0,.8);}
+.project h3{padding-bottom: 60px;color: #FFF;}
+.nav_wrap{}
+.nav_wrap ul{display: inline-block;color: #ccc;}
+.nav_wrap li{float: left;padding: 4px 8px;border: 2px solid #961;border-radius: #ccc;margin:0 5px;font-size: 1.2em;border-radius: 8px;transition:color 1s,background-color 1s;cursor: pointer;}
+.nav_wrap li:hover{background-color: #ff9800; border-color: #ff9800;color: #fff;}
+.project_tabs:after{content: "";display: block;clear: both;}
+.project_tab{width: 331px;height: 220px;float: left;margin: 32px 15px 0;overflow: hidden;transition: all .5s;cursor: pointer;position: relative;}
+.project_tab.hide{width: 0px;margin-left:0; margin-right: 0;}
+.project_tabs .pic{width: 100%;height: 100%;overflow: hidden;}
+.project_tabs .pic img{width: 100%;height: 100%;transition: transform .5s;}
+.project_tab:hover .pic img{transform: rotate(5deg) scale(1.2);overflow: hidden;}
+.project_tab:hover .introduce{display: block;}
+.introduce{display: none; position: absolute;top: 0;left: 0; width: 100%;height: 100%; text-align: center;vertical-align:middle; font-size: 1em; background-color: rgba(225,225,225,0.7);}
+.introduce p{color: #000;font-size: 1.3em;padding: 20% 20%;}
+
+
+
+
+
+
+
+
+
+
