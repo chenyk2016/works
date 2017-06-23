@@ -99,7 +99,7 @@
 				//改变年月
 				$(".year").val(year+"年");
 				$(".month").val((month+1+"月"));
-				console.log($(".year").val());
+				//console.log($(".year").val());
 				// 赋值
 				var $td=$("td");
 				for (var i = 0; i < $("td").length; i++) {
@@ -137,7 +137,7 @@
 				}
 				//添加标记
 				$td.each(function(){
-						$(this).removeClass("note");
+						$(this).removeClass("note").off();
 				});
 				for (var i = 0; i < $td.length; i++) {
 
@@ -151,8 +151,8 @@
 						
 						if( note_arr[j].year==td_year && note_arr[j].month==td_month && note_arr[j].date==td_date){
 							$td[i].index=j;
-							$td.eq(i).addClass("note").click(function(){
-								alert( note_arr[ this.index ].note_cont )
+							$td.eq(i).addClass("note").on("click", function( ){
+								alert( note_arr[ this.index ].note_cont );
 							});
 						}
 						
